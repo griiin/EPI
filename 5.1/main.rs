@@ -1,3 +1,4 @@
+// O(n * (ln word_size)) = O(n * 6)
 fn is_even(w: u64) -> bool {
     let mut x = w;
     x ^= x >> 32;
@@ -18,10 +19,12 @@ fn are_even(v: Vec<u64>) -> bool {
 }
 
 fn main() {
-    let o = 0b01u64;
-    let e = 0b11u64;
-    println!("{:?}", are_even(vec![o]));
-    println!("{:?}", are_even(vec![e]));
-    println!("{:?}", are_even(vec![o, o]));
-    println!("{:?}", are_even(vec![o, e, o, e, o]));
+    let o = 0b0000000010000000000000000000000000001000000000000100000000000000u64;
+    let e = 0b0000000010000000000000000010000000001000000000000100000000000000u64;
+    let mut v = Vec::new();
+    for _ in 0..10000000 {
+        v.push(e);
+        v.push(o);
+    }
+    println!("{:?}", are_even(v));
 }
