@@ -6,21 +6,25 @@ fn swap(mut v: &mut Vec<i32>, a: usize, b: usize) {
 
 fn re_arrange(mut v: &mut Vec<i32>, ip: usize) {
     let p = v[ip];
-    swap(&mut v, 0, ip);
-    let mut j = 1;
-    for i in 1..v.len() {
-        if v[i] < p {
-            if i != j {
-                swap(&mut v, j, i);
-            }
-            j += 1;
+    let mut equal = 0;
+    let mut smaller = 0;
+    let mut larger = v.len() - 1;
+    while equal <= larger {
+        if v[equal] < p {
+            swap(&mut v, smaller, equal);
+            smaller += 1;
+            equal += 1;
+        } else if v[equal] == p {
+            equal += 1;
+        } else {
+            swap(&mut v, equal, larger);
+            larger -= 1;
         }
     }
-    swap(&mut v, 0, j - 1);
 }
 
 fn main() {
-    let mut v = vec![5,6,12,1,23,55,99,0,15,18];
-    re_arrange(&mut v, 8);
+    let mut v = vec![5,6,12,1,15,23,55,99,0,15,18,15];
+    re_arrange(&mut v, 9);
     println!("{:?}", v);
 }
