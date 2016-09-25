@@ -1,18 +1,9 @@
 fn is_even(w: u64) -> bool {
     let mut r = true;
-    let mut mask = 0b1u64;
-    let u64_max_value = 0b10000000000000000000000000000000u64;
-    loop {
-        if mask == u64_max_value {
-            break;
-        }
-
-        if w & mask > 0 {
-            r = !r;
-        }
-
-
-        mask = mask << 1;
+    let mut x = w;
+    while x != 0 {
+        r = !(((x & 1) == 0) ^ r);
+        x >>= 1;
     }
     r
 }
