@@ -1,11 +1,12 @@
 fn is_even(w: u64) -> bool {
-    let mut r = true;
     let mut x = w;
-    while x != 0 {
-        r = !(((x & 1) == 0) ^ r);
-        x >>= 1;
-    }
-    r
+    x ^= x >> 32;
+    x ^= x >> 16;
+    x ^= x >> 8;
+    x ^= x >> 4;
+    x ^= x >> 2;
+    x ^= x >> 1;
+    (x & 0b1) == 0
 }
 
 fn are_even(v: Vec<u64>) -> bool {
