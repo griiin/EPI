@@ -18,9 +18,37 @@ fn to_int(s: &str) -> i32 {
     r
 }
 
+fn to_str(i: i32) -> String {
+    let mut i = i;
+    let base = '0' as i32;
+    let mut v = Vec::new();
+    let neg = i < 0;
+    if neg {
+        i *= -1;
+    }
+    while i > 0 {
+        let r = i % 10;
+        v.push(((r + base) as u8) as char);
+        i /= 10;
+    }
+    if neg {
+        v.push('-');
+    }
+    let mut s = String::new();
+    v.reverse();
+    for c in v {
+        s.push(c);
+    }
+    s
+}
+
 fn main() {
     println!("{:?}", to_int("10"));
     println!("{:?}", to_int("123"));
     println!("{:?}", to_int("999"));
     println!("{:?}", to_int("-999"));
+    println!("{:?}", to_str(10));
+    println!("{:?}", to_str(123));
+    println!("{:?}", to_str(999));
+    println!("{:?}", to_str(-999));
 }
