@@ -1,7 +1,5 @@
-// fn get_anagrams(dico: Vec<&str>) -> Vec<String> {
-//     dico.iter().map(|n: &str| 1).collect()
-// }
 use std::collections::HashMap;
+
 fn sort_str(s: &str) -> String {
     let mut chars: Vec<char> = s.chars().collect();
     chars.sort();
