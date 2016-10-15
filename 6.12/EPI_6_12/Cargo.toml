@@ -1,0 +1,7 @@
+[package]
+name = "EPI_6_12"
+version = "0.1.0"
+authors = ["griiin <julien.nigri@gmail.com>"]
+
+[dependencies]
+rand = "*"
