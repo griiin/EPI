@@ -1,27 +1,30 @@
 fn spiral_display(grid: Vec<Vec<i32>>, size: usize, d: usize) {
     if d == size / 2 {
         if size % 2 == 1 {
-            println!("{}", grid[d][d]);
-        } else {
-            println!("END");
+            print!(", {}", grid[d][d]);
         }
+        println!("");
         return;
     }
     // up
     for i in (d)..(size - d) {
-        print!("{}, ", grid[d][i]);
+        if i == 0 && d == 0 {
+            print!("{}", grid[d][i]);
+        } else {
+            print!(", {}", grid[d][i]);
+        }
     }
     // right
     for i in (d + 1)..(size - d) {
-        print!("{}, ", grid[i][size - d - 1]);
+        print!(", {}", grid[i][size - d - 1]);
     }
     // botton
     for i in ((d)..(size - d - 1)).rev() {
-        print!("{}, ", grid[size - d - 1][i]);
+        print!(", {}", grid[size - d - 1][i]);
     }
     // left
     for i in ((d + 1)..(size - d - 1)).rev() {
-        print!("{}, ", grid[i][d]);
+        print!(", {}", grid[i][d]);
     }
     spiral_display(grid, size, d + 1);
 }
